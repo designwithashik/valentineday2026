@@ -28,31 +28,35 @@ my-valentine-site/
 
 ## Run Locally
 
-Use any static server. Example:
-
 ```bash
 cd my-valentine-site/public
 python3 -m http.server 8080
 ```
 
-Then open: `http://localhost:8080`
+Open `http://localhost:8080`.
 
 ## Customize the Love Message
 
-Open `public/script.js` and edit:
+Edit this line in `public/script.js`:
 
 ```js
 const LOVE_MESSAGE = "Yay! You just made my day 💘";
 ```
 
-Replace that string with your own message.
+## Deploy to Vercel (simple, no 404)
 
-## Deploy to Vercel
+### Option A (recommended)
+Set **Root Directory** to `my-valentine-site` in Vercel project settings.
 
-1. Push the repository to GitHub.
-2. Go to [https://vercel.com/new](https://vercel.com/new).
-3. Import your GitHub repository.
-4. Deploy with default settings (Vercel will serve from `public` via `vercel.json`).
+### Option B
+Keep root directory as repo root and use the root `vercel.json` rewrite config (already included in this repo).
+
+Then deploy.
+
+## If you see 404 errors
+
+- Make sure Vercel project root is correct (`my-valentine-site`) **or** root `vercel.json` exists.
+- `click-sound.mp3` is a placeholder file. Replace it with a real short MP3 if you want guaranteed sound playback.
 
 ## First Git Commit Instructions
 
@@ -64,7 +68,3 @@ git branch -M main
 git remote add origin <YOUR_GITHUB_REPO_URL>
 git push -u origin main
 ```
-
-## Note about `click-sound.mp3`
-
-A placeholder file is included at `public/click-sound.mp3`. Replace it with a short click/pop MP3 for best effect.
