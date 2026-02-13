@@ -1,64 +1,59 @@
-# My Valentine Site 💘
+# My Valentine Site 💘 (Next.js)
 
-A cute, static Valentine webpage ready to deploy on **Vercel**.
+A cute Valentine page built with **Next.js** for a safer, hassle-free Vercel deployment.
 
 ## Features
 
-- Pastel pink, mobile-friendly design.
-- "No ❌" button dodges the cursor.
-- "Yes 💖" button grows larger as users try to chase "No".
-- Random floating heart background animation.
-- Celebration sequence on **Yes**:
-  - Plays `click-sound.mp3`
-  - Launches emoji confetti animation
-  - Shows a customizable love message alert
+- Pastel pink, mobile-friendly UI
+- "No ❌" button dodges the cursor
+- "Yes 💖" button grows while chasing "No"
+- Floating heart background animation
+- On **Yes** click:
+  - plays `public/click-sound.mp3`
+  - shows big animated message: **I love you Sneha 💖**
+  - displays cute love emoji burst animations all around
 
 ## Project Structure
 
 ```txt
 my-valentine-site/
+├── app/
+│   ├── globals.css
+│   ├── layout.js
+│   └── page.js
 ├── public/
-│   ├── index.html
-│   ├── style.css
-│   ├── script.js
 │   └── click-sound.mp3
-├── vercel.json
-└── README.md
+├── package.json
+└── .gitignore
 ```
 
 ## Run Locally
 
 ```bash
-cd my-valentine-site/public
-python3 -m http.server 8080
+cd my-valentine-site
+npm install
+npm run dev
 ```
 
-Open `http://localhost:8080`.
+Open: `http://localhost:3000`
+
+## Deploy to Vercel (recommended)
+
+1. Push this repo to GitHub.
+2. In Vercel, import the repository.
+3. Set **Root Directory** to: `my-valentine-site`.
+4. Framework should auto-detect as **Next.js**.
+5. Click **Deploy**.
+
+No custom rewrite config is required.
 
 ## Customize the Love Message
 
-Edit this line in `public/script.js`:
+Edit in `app/page.js`:
 
 ```js
-const LOVE_MESSAGE = "Yay! You just made my day 💘";
+const LOVE_MESSAGE = "I love you Sneha 💖";
 ```
-
-## Deploy to Vercel (simple, no 404)
-
-### Option A (recommended)
-Set **Root Directory** to `my-valentine-site` in Vercel project settings.
-This works because `my-valentine-site/vercel.json` rewrites `/` to `/public/index.html`.
-
-### Option B
-Keep root directory as repo root and use the root `vercel.json` rewrite config (already included in this repo).
-
-Then deploy.
-
-## If you see 404 errors
-
-- Make sure Vercel project root is correct (`my-valentine-site`) **or** root `vercel.json` exists.
-- If root is `my-valentine-site`, confirm `my-valentine-site/vercel.json` contains rewrites to `/public/index.html` and `/public/$1`.
-- `click-sound.mp3` is a placeholder file. Replace it with a real short MP3 if you want guaranteed sound playback.
 
 ## First Git Commit Instructions
 
