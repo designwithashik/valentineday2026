@@ -1,0 +1,206 @@
+:root {
+  --bg: #ffe4ef;
+  --card: #fff7fb;
+  --text: #7b3054;
+  --yes: #ff5ca2;
+  --yes-hover: #ff3f91;
+  --no: #ffffff;
+  --shadow: rgba(255, 92, 162, 0.25);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(180deg, var(--bg) 0%, #ffd9ea 100%);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text);
+  overflow: hidden;
+  position: relative;
+}
+
+#hearts-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.card {
+  position: relative;
+  z-index: 1;
+  width: min(92vw, 560px);
+  text-align: center;
+  background: var(--card);
+  border-radius: 24px;
+  padding: 2rem 1.25rem;
+  box-shadow: 0 18px 40px var(--shadow);
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.card.hidden {
+  opacity: 0;
+  transform: scale(0.9);
+  pointer-events: none;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+}
+
+.subtitle {
+  margin: 0.75rem 0 1.5rem;
+  opacity: 0.8;
+}
+
+.button-row {
+  position: relative;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  min-height: 70px;
+}
+
+.btn {
+  border: none;
+  border-radius: 999px;
+  padding: 0.85rem 1.4rem;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px var(--shadow);
+}
+
+.btn-yes {
+  background: var(--yes);
+  color: #fff;
+}
+
+.btn-yes:hover {
+  background: var(--yes-hover);
+}
+
+.btn-no {
+  background: var(--no);
+  color: var(--text);
+  border: 2px solid #ffc2de;
+  position: relative;
+}
+
+.heart {
+  position: absolute;
+  font-size: 1.1rem;
+  animation: floatUp linear forwards;
+  opacity: 0.85;
+}
+
+.love-celebration {
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.3), rgba(255, 189, 220, 0.5));
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.love-celebration.show {
+  opacity: 1;
+}
+
+.love-message {
+  font-size: clamp(2rem, 9vw, 5.5rem);
+  font-weight: 800;
+  color: #ff2e88;
+  text-align: center;
+  text-shadow: 0 10px 22px rgba(255, 46, 136, 0.35);
+  animation: popIn 0.8s cubic-bezier(0.2, 0.9, 0.2, 1.2) forwards, pulseLove 1.8s ease-in-out infinite;
+  z-index: 2;
+  padding: 0 1rem;
+}
+
+.emoji-burst {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.emoji-love {
+  position: absolute;
+  font-size: clamp(1.2rem, 2.5vw, 2.1rem);
+  animation: swirlLove 2.8s ease-in-out forwards;
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0.2) rotate(-6deg);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes pulseLove {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.06);
+  }
+}
+
+@keyframes swirlLove {
+  0% {
+    transform: translate(0, 0) scale(0.4) rotate(0deg);
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--dx), var(--dy)) scale(1.25) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(15px) scale(0.7);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.95;
+  }
+  100% {
+    transform: translateY(-110vh) scale(1.3);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .card {
+    padding: 1.5rem 1rem;
+  }
+
+  .btn {
+    font-size: 0.95rem;
+    padding: 0.75rem 1.1rem;
+  }
+}
