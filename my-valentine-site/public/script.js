@@ -2,12 +2,14 @@ const yesBtn = document.getElementById("yes-btn");
 const noBtn = document.getElementById("no-btn");
 const heartsContainer = document.getElementById("hearts-container");
 const clickSound = document.getElementById("click-sound");
+const celebration = document.getElementById("love-celebration");
+const emojiBurst = document.getElementById("emoji-burst");
+const card = document.querySelector(".card");
 
-const LOVE_MESSAGE = "Yay! You just made my day 💘";
+const LOVE_MESSAGE = "I love you Sneha 💖";
 let yesScale = 1;
 
 function moveNoButton() {
-  const card = document.querySelector(".card");
   const cardRect = card.getBoundingClientRect();
   const noRect = noBtn.getBoundingClientRect();
 
@@ -53,6 +55,33 @@ function spawnHeart() {
   }, 7200);
 }
 
+function showLoveCelebration() {
+  celebration.querySelector(".love-message").textContent = LOVE_MESSAGE;
+  card.classList.add("hidden");
+  celebration.classList.add("show");
+  celebration.setAttribute("aria-hidden", "false");
+
+  const emojis = ["💖", "💕", "💘", "💝", "😘", "🥰", "🌸", "✨"];
+  const count = 36;
+
+  for (let i = 0; i < count; i += 1) {
+    const pop = document.createElement("span");
+    const angle = (Math.PI * 2 * i) / count;
+    const distance = 180 + Math.random() * 180;
+
+    pop.className = "emoji-love";
+    pop.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    pop.style.left = "50%";
+    pop.style.top = "50%";
+    pop.style.setProperty("--dx", `${Math.cos(angle) * distance}px`);
+    pop.style.setProperty("--dy", `${Math.sin(angle) * distance}px`);
+    pop.style.animationDelay = `${Math.random() * 0.6}s`;
+
+    emojiBurst.appendChild(pop);
+    setTimeout(() => pop.remove(), 3600);
+  }
+}
+
 noBtn.addEventListener("mouseenter", moveNoButton);
 noBtn.addEventListener("touchstart", (event) => {
   event.preventDefault();
@@ -73,7 +102,7 @@ yesBtn.addEventListener("click", async () => {
   }
 
   burstConfetti();
-  setTimeout(() => alert(LOVE_MESSAGE), 300);
+  showLoveCelebration();
 });
 
 setInterval(spawnHeart, 450);
