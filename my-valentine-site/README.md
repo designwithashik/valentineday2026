@@ -47,6 +47,7 @@ const LOVE_MESSAGE = "Yay! You just made my day 💘";
 
 ### Option A (recommended)
 Set **Root Directory** to `my-valentine-site` in Vercel project settings.
+This works because `my-valentine-site/vercel.json` rewrites `/` to `/public/index.html`.
 
 ### Option B
 Keep root directory as repo root and use the root `vercel.json` rewrite config (already included in this repo).
@@ -56,6 +57,7 @@ Then deploy.
 ## If you see 404 errors
 
 - Make sure Vercel project root is correct (`my-valentine-site`) **or** root `vercel.json` exists.
+- If root is `my-valentine-site`, confirm `my-valentine-site/vercel.json` contains rewrites to `/public/index.html` and `/public/$1`.
 - `click-sound.mp3` is a placeholder file. Replace it with a real short MP3 if you want guaranteed sound playback.
 
 ## First Git Commit Instructions
